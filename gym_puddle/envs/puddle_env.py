@@ -32,7 +32,7 @@ class PuddleEnv(gym.Env):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
-    def _step(self, action):
+    def step(self, action):
         assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
 
         self.pos += self.actions[action] + self.np_random.uniform(low=-self.noise, high=self.noise, size=(2,))
@@ -55,7 +55,7 @@ class PuddleEnv(gym.Env):
     def _gaussian1d(self, p, mu, sig):
         return np.exp(-((p - mu)**2)/(2.*sig**2)) / (sig*np.sqrt(2.*np.pi))
 
-    def _reset(self):
+    def reset(self):
         if self.start is None:
             self.pos = self.observation_space.sample()
         else:
