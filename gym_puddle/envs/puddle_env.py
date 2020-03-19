@@ -25,10 +25,10 @@ class PuddleEnv(gym.Env):
         for i in range(4):
             self.actions[i][i//2] = thrust * (i%2 * 2 - 1)
 
-        self._seed()
+        self.seed()
         self.viewer = None
 
-    def _seed(self, seed=None):
+    def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
@@ -62,7 +62,7 @@ class PuddleEnv(gym.Env):
             self.pos = copy.copy(self.start)
         return self.pos
 
-    def _render(self, mode='human', close=False):
+    def render(self, mode='human', close=False):
         if close:
             if self.viewer is not None:
                 self.viewer.close()
