@@ -42,7 +42,7 @@ class PuddleEnv(gym.Env):
 
         done = np.linalg.norm((self.pos - self.goal), ord=1) < self.goal_threshold
         if done:
-            reward = np.inf
+            reward = 400
         return self.pos, reward, done, {}
 
     def _get_reward(self, pos):
